@@ -1,20 +1,43 @@
-## Contribution Guidelines
-### Scope of Contributions
-We encourage contributions that:
+# Contributing to [Your Project Name]
 
-Embrace Scrappiness: We value initiative and experimentation. If you have an idea that you believe will benefit the project, don't hesitate to try it out. Use your own environments to test your ideas, and share your findings with the community. If your experiments prove successful, they may be integrated into the main branch through a pull request.
+We welcome contributions that align with our project's principles and mission. Here's how you can contribute.
 
-Promote Diversity in Dependencies: While we strive to be model agnostic, it's crucial that we avoid vendor lock-in, especially single-source dependencies. Contributions should preferably be compatible with open-source models and allow for interoperability among different AI providers and technologies.
+## Be Scrappy
 
-Adhere to Task-Constrained Development: Understand that our framework's capabilities are determined by the tasks it can perform. Your contributions should align with our current task space and capabilities. All new features should be accompanied by tests that provide empirical data to support their effectiveness.
+- Experiment, try new things, and share your results.
+- Use personal sandboxes for experiments.
+- Submit pull requests with a summary of findings.
 
-Simplify, Don't Overcomplicate: Aim for simplicity in your contributions. Set modest goals and make incremental improvements. Our vision is grand, but we achieve it one step at a time. Contributions that add unnecessary complexity without clear benefits will be critically reviewed.
+## Avoid Vendor Lockin
 
-Forge New Principles: As we navigate new territories in software architecture, be open to challenging and redefining established paradigms. We encourage contributions that explore new principles of autonomous software design.
+- Contributions should be compatible with multiple AI providers.
+- Preference for open-source solutions.
 
-Pull Request Process
-Fork the repository.
-Create your feature branch (git checkout -b feature/AmazingFeature).
-Commit your changes (git commit -m 'Add some AmazingFeature').
-Push to the branch (git push origin feature/AmazingFeature).
-Open a pull request detailing your changes and how they contribute to the principles above.
+## Task-Constrained Approach
+
+- Contributions should be accompanied by empirical data.
+- Features should be testable and focused on the framework's capabilities.
+
+## Avoiding Overcomplication
+
+- Aim for simplicity and clarity.
+- Small, incremental steps are valued over large, complex changes.
+
+## Establish New Principles
+
+- Be open to redefining software paradigms.
+- Contributions should potentially introduce new principles of autonomous software design.
+
+## Pull Requests
+
+- Fork the repo.
+- Create your feature branch (`git checkout -b feature/YourFeature`).
+- Commit your changes (`git commit -am 'Add some feature'`).
+- Push to the branch (`git push origin feature/YourFeature`).
+- Create a new Pull Request.
+
+## Code Reviews
+
+All pull requests are subject to code review and approval by project maintainers.
+
+Thank you for your contributions!

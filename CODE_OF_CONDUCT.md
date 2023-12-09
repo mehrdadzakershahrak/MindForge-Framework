@@ -1,19 +1,26 @@
-### Our Pledge
-In the interest of fostering an open and welcoming environment, we pledge to make participation in our project and our community a harassment-free experience for everyone.
+# Code of Conduct
 
-### Our Standards
-Examples of behavior that contributes to creating a positive environment include:
+## Our Pledge
 
-Being respectful of differing viewpoints and experiences.
-Gracefully accepting constructive criticism.
-Focusing on what is best for the community.
-Showing empathy towards other community members.
-Examples of unacceptable behavior by participants include:
+We pledge to make participating in our project a harassment-free experience for everyone.
 
-The use of sexualized language or imagery and unwelcome sexual attention or advances.
-Trolling, insulting/derogatory comments, and personal or political attacks.
-Public or private harassment.
-Other conduct which could reasonably be considered inappropriate in a professional setting.
+## Our Standards
 
-### Enforcement
-Violations of the code of conduct may be reported to the project team. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances.
+Positive behavior includes:
+
+- Demonstrating empathy and kindness toward other people.
+- Being respectful of differing opinions, viewpoints, and experiences.
+- Giving and gracefully accepting constructive feedback.
+- Accepting responsibility and apologizing to those affected by our mistakes.
+
+Unacceptable behavior includes:
+
+- The use of sexualized language or imagery, and sexual attention or advances.
+- Trolling, insulting or derogatory comments, and personal or political attacks.
+- Public or private harassment.
+- Any other conduct which could reasonably be considered inappropriate in a professional setting.
+
+## Enforcement
+
+Violations of the Code of Conduct may be reported by contacting the project team. All complaints will be reviewed and investigated.
+

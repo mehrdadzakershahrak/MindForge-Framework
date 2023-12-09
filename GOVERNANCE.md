@@ -1,8 +1,21 @@
-## Governance Structure
-### Supreme Oversight Board (SOB)
-The project will be overseen by the Supreme Oversight Board, consisting of active community members who are committed to the project's success. The SOB will:
+# Governance Structure
 
-Review and approve major decisions.
-Ensure that the project adheres to its core principles.
-Address any ethical considerations arising from project developments.
-Members of the SOB will be elected based on their contributions, adherence to project principles, and community engagement.
+## Supreme Oversight Board (SOB)
+
+The SOB is responsible for making ethical and strategic decisions for the project. The board ensures adherence to the project's core principles and addresses ethical considerations.
+
+### Roles and Responsibilities
+
+- Approve major decisions.
+- Review adherence to core principles.
+- Handle ethical considerations.
+
+### Membership
+
+- Members are elected based on contributions and community engagement.
+- Elections are held annually.
+
+## Decision Making
+
+Decisions are made through consensus. If consensus cannot be reached, a majority vote is used.
+
