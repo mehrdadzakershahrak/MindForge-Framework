@@ -1,4 +1,4 @@
-# Contributing to [Your Project Name]
+# Contributing to MindForge
 
 We welcome contributions that align with our project's principles and mission. Here's how you can contribute.
 
