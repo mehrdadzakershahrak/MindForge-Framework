@@ -1,7 +1,5 @@
 # MindForge
 
-# MindForge
-
 Welcome to MindForge, an open-source initiative aimed at emulating structured human cognition through software. Our goal is to create a framework capable of evolving and addressing complex tasks by breaking them down into manageable sub-tasks, handled by specialized AI agents.
 
 ## Vision
@@ -24,19 +22,19 @@ To get started with MindForge, you'll need to clone the repository and follow th
 git clone https://github.com/your-username/MindForge.git
 ```
 
-For detailed installation instructions, see INSTALL.md.
+For detailed installation instructions, see [INSTALL.md](docs/INSTALL.md).
 
-Usage
-For guidelines on how to use MindForge and examples of its capabilities, please refer to the USAGE.md documentation.
+## Usage
+For guidelines on how to use MindForge and examples of its capabilities, please refer to the [USAGE.md](docs/USAGE.md)  documentation.
 
-Contributing
-Your contributions are what make MindForge a dynamic and community-oriented project. We encourage you to be scrappy, avoid vendor lock-in, and experiment within task constraints. For more information on how to contribute, please read CONTRIBUTING.md.
+## Contributing
+Your contributions are what make MindForge a dynamic and community-oriented project. We encourage you to be scrappy, avoid vendor lock-in, and experiment within task constraints. For more information on how to contribute, please read [CONTRIBUTING.md](docs/CONTRIBUTING.md).
 
-License
-MindForge is MIT licensed. As a contributor, you are free to use, modify, distribute, and contribute back to the project. For full license text, see LICENSE.md.
+## License
+MindForge is MIT licensed. As a contributor, you are free to use, modify, distribute, and contribute back to the project. For full license text, see [LICENSE.md](LICENSE.md).
 
-Governance
-To understand our governance structure and the role of the Supreme Oversight Board, please review GOVERNANCE.md.
+## Governance
+To understand our governance structure and the role of the Supreme Oversight Board, please review [GOVERNANCE.md](GOVERNANCE.md).
 
-Code of Conduct
-We are committed to providing a welcoming and inspiring community for all. Please read our CODE_OF_CONDUCT.md to learn about our expectations for participants' behavior.
+## Code of Conduct
+We are committed to providing a welcoming and inspiring community for all. Please read our [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) to learn about our expectations for participants' behavior.
