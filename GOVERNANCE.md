@@ -15,7 +15,7 @@ The SOB is responsible for making ethical and strategic decisions for the projec
 - Members are elected based on contributions and community engagement.
 - Except for the Git owner, members are needed to be elected to serve on the board.
 - Elections are held annually.
-- The board consists of 3 members.
+
 
 ## Decision Making
 
