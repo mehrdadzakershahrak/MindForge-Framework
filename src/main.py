@@ -1,8 +1,10 @@
-from framework import FrameworkCore
-from framework import TaskPipeline
-from framework import ResourceManager
-from framework import create_task
-from framework import LanguageModelService
+from FrameworkCore import FrameworkCore
+from TaskPipeline import TaskPipeline
+from ResourceManager import ResourceManager
+from Task import create_task
+from LanguageModelService import LanguageModelService
+from self_talk import self_talk, think_out_loud
+from components import analysis, drafting, research
 
 def main():
     framework = FrameworkCore()
