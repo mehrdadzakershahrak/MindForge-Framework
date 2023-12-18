@@ -20,20 +20,14 @@ def main():
     resource_manager = ResourceManager(max_concurrent_tasks=3)
     pipeline = TaskPipeline([research_task, drafting_task], resource_manager)
 
-    # Execute tasks in parallel with resource management
-    parallel_results = pipeline.execute_in_parallel(framework, [('input1',), ('input2',)])
-
-    print(f"Parallel Execution Results with Resource Management: {parallel_results}")
-
-
     # Execute tasks sequentially
     sequential_result = pipeline.execute_sequentially(framework, ('initial input',))
 
-    # Execute tasks in parallel
+    # Execute tasks in parallel with resource management
     parallel_results = pipeline.execute_in_parallel(framework, [('input1',), ('input2',)])
 
     print(f"Sequential Execution Result: {sequential_result}")
-    print(f"Parallel Execution Results: {parallel_results}")
+    print(f"Parallel Execution Results with Resource Management: {parallel_results}")
 
 if __name__ == "__main__":
     main()
