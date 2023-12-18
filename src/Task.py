@@ -6,7 +6,14 @@ class Task:
 
     def execute(self, framework, initial_input):
         result = initial_input
-        for i, component_name in enumerate(self.components):
+        for component_name in self.components:
+            component = framework.components[component_name]
             component_instructions = self.instructions.get(component_name, {})
-            result = framework.run_component(component_name, *result, **component_instructions)
+
+            if component_name == 'research':
+                if isinstance(result, tuple):
+                    result = component(*result[:4], component_instructions)  
+                else:
+                    result = component(result, "", "", lm_service, component_instructions)
+        
         return result

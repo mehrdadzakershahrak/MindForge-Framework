@@ -4,7 +4,9 @@ from ResourceManager import ResourceManager
 from LanguageModelService import LanguageModelService
 from utils import self_talk, think_out_loud, create_task
 from Task import Task
-from components import analysis, drafting, research
+from components.research import research
+from components.analysis import analysis
+from components.drafting import drafting
 from halo import Halo
 
 def read_instructions(file_path):
@@ -13,7 +15,9 @@ def read_instructions(file_path):
         for line in file:
             if line.startswith('#'):
                 key, value = line.split(None, 1)
-                instructions[key] = value.strip()
+                formatted_key = key.strip('#').replace(' ', '').lower()
+                if formatted_key:  # Ensure the key is not empty
+                    instructions[formatted_key] = value.strip()
     return instructions
 
 
@@ -47,13 +51,13 @@ def main():
     
     # Sequential execution of tasks with iteration
     for _ in range(n_iterations):
-        research_output = research_task.execute(framework, ('initial input'))
+        research_output = research_task.execute(framework, ('initial input', '', '', lm_service))
         print(f"Research Task Output: {research_output}")
 
-        analysis_output = analysis_task.execute(framework, research_output)
+        analysis_output = analysis_task.execute(framework, (research_output, '', lm_service))
         print(f"Analysis Task Output: {analysis_output}")
-    
-    draft_output = drafting_task.execute(framework, analysis_output)
+
+    draft_output = drafting_task.execute(framework, (analysis_output, '', lm_service))
     print(f"Drafting Task Output: {draft_output}")
     
     spinner.stop()

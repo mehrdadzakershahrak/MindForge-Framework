@@ -7,7 +7,10 @@ class FrameworkCore:
 
     def run_component(self, component_name, *args, **kwargs):
         component = self.components[component_name]
-        return component(*args, **kwargs)
+        if callable(component):
+            return component(*args, **kwargs)
+        else:
+            raise TypeError(f"The component {component_name} is not callable.")
 
 class ComponentInterface:
     def process(self, input_data):
