@@ -11,7 +11,9 @@ def main():
     # Define and add functions to the framework
     framework.add_function('research', research)
     # Add other components as needed...
-
+    framework.add_function('self_talk', self_talk)
+    framework.add_function('think_out_loud', think_out_loud)
+    
     # Define instructions for each component
     research_instructions = {
         'mission': "Generate search queries based on user input.",
@@ -36,6 +38,13 @@ def main():
 
     print(f"Sequential Execution Result: {sequential_result}")
     print(f"Parallel Execution Results with Resource Management: {parallel_results}")
+    
+    # Example usage of thinking out loud
+    initial_response = "Initial prompt"
+    refined_response = think_out_loud(initial_response, self_talk, 3, component1, component2, lm_service, True)
+
+    print(f"Refined Response: {refined_response}")
+
 
 if __name__ == "__main__":
     main()
