@@ -20,9 +20,9 @@ def main():
     lm_service = LanguageModelService(provider='openai')
 
     # Add functions to the framework
-    framework.add_function('research', research)
-    framework.add_function('analysis', analysis)
-    framework.add_function('drafting', drafting)
+    framework.add_component('research', research)
+    framework.add_component('analysis', analysis)
+    framework.add_component('drafting', drafting)
     # Add other components...
 
     # Read instructions for each component from files
