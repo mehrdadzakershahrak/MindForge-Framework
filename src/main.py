@@ -1,30 +1,38 @@
-class FrameworkCore:
-    def __init__(self):
-        self.functions = {}
-
-    def add_function(self, function_name, function):
-        self.functions[function_name] = function
-
-    def run_function(self, function_name, *args, **kwargs):
-        return self.functions[function_name](*args, **kwargs)
+from framework import FrameworkCore
+from framework import TaskPipeline
+from framework import ResourceManager
+from framework import create_task
+from framework import LanguageModelService
 
 def main():
     framework = FrameworkCore()
-    # Add functions to framework...
+    lm_service = LanguageModelService(provider='openai')
 
-    # Create tasks...
+    # Define and add functions to the framework
+    framework.add_function('research', research)
+    # Add other components as needed...
+
+    # Define instructions for each component
+    research_instructions = {
+        'mission': "Generate search queries based on user input.",
+        'output_format': "JSON",
+        'refine_queries': "Refine and optimize queries."
+    }
+    # Define instructions for other components...
+
+    # Create tasks with instructions
     research_task = create_task("Research Task", ['research'], {'research': research_instructions})
-    drafting_task = create_task("Drafting Task", ['drafting'], {'drafting': drafting_instructions})
+    # Create other tasks...
 
     # Create a pipeline of tasks
     resource_manager = ResourceManager(max_concurrent_tasks=3)
-    pipeline = TaskPipeline([research_task, drafting_task], resource_manager)
+    pipeline = TaskPipeline([research_task], resource_manager)  # Add other tasks as needed
 
     # Execute tasks sequentially
-    sequential_result = pipeline.execute_sequentially(framework, ('initial input',))
+    sequential_result = pipeline.execute_sequentially(framework, ('initial input', 'lm_service'))
 
     # Execute tasks in parallel with resource management
-    parallel_results = pipeline.execute_in_parallel(framework, [('input1',), ('input2',)])
+    parallel_results = pipeline.execute_in_parallel(framework, [('input1', 'lm_service'), ('input2', 'lm_service')])
 
     print(f"Sequential Execution Result: {sequential_result}")
     print(f"Parallel Execution Results with Resource Management: {parallel_results}")
