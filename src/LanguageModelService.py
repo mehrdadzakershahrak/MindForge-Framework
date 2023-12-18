@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
-import openai
+from openai import OpenAI
+
+client = OpenAI(api_key=self.openai_api_key)
 
 # Load environment variables
 load_dotenv()
@@ -20,10 +22,17 @@ class LanguageModelService:
         return response
 
     def query_openai(self, prompt, max_tokens):
-        openai.api_key = self.openai_api_key
-        model = 'gpt-4-turbo' 
-        response = openai.Completion.create(model=model, prompt=prompt, max_tokens=max_tokens)
-        return response.choices[0].text.strip(), len(response.choices[0].text.strip())
+        model = 'gpt-4-turbo'
+        response = client.chat.completions.create(model=model,
+        messages=[{"role": "user", "content": prompt}],  # prompt passed as user message
+        max_tokens=max_tokens,
+        temperature=0)  # adjust as needed)
+        # Extracting the response text from the last message from the assistant
+        if response.choices:
+            last_message = response.choices[-1].get('message', {})
+            return last_message.get('content', ''), len(last_message.get('content', ''))
+        return '', 0
+
 
     def query_huggingface(self, prompt, max_tokens):
         # Placeholder for Hugging Face API call
