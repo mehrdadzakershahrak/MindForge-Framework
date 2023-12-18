@@ -8,5 +8,5 @@ class Task:
         result = initial_input
         for i, component_name in enumerate(self.components):
             component_instructions = self.instructions.get(component_name, {})
-            result = framework.run_function(component_name, *result, **component_instructions)
+            result = framework.run_component(component_name, *result, **component_instructions)
         return result

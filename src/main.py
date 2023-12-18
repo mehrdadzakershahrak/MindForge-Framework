@@ -5,6 +5,7 @@ from LanguageModelService import LanguageModelService
 from utils import self_talk, think_out_loud, create_task
 from Task import Task
 from components import analysis, drafting, research
+from halo import Halo
 
 def read_instructions(file_path):
     instructions = {}
@@ -37,7 +38,25 @@ def main():
     drafting_task = create_task("Drafting Task", ['drafting'], {'drafting': drafting_instructions})
     # Create other tasks...
 
-    # Task execution and other logic...
+    # Task execution and other logic
+    
+    # Define the number of iterations for research and analysis
+    n_iterations = 3 # Example value
+    spinner = Halo(text='Thinking...', spinner='dots')
+    spinner.start()
+    
+    # Sequential execution of tasks with iteration
+    for _ in range(n_iterations):
+        research_output = research_task.execute(framework, ('initial input'))
+        print(f"Research Task Output: {research_output}")
+
+        analysis_output = analysis_task.execute(framework, research_output)
+        print(f"Analysis Task Output: {analysis_output}")
+    
+    draft_output = drafting_task.execute(framework, analysis_output)
+    print(f"Drafting Task Output: {draft_output}")
+    
+    spinner.stop()
 
 if __name__ == "__main__":
     main()
