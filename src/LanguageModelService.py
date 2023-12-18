@@ -21,9 +21,9 @@ class LanguageModelService:
 
     def query_openai(self, prompt, max_tokens):
         openai.api_key = self.openai_api_key
-        model = 'gpt-4-turbo'
-        response = openai.Completion.create(model, prompt=prompt, max_tokens=max_tokens)
-        return response.choices[0].text.strip(), response.usage.total_tokens
+        model = 'gpt-4-turbo' 
+        response = openai.Completion.create(model=model, prompt=prompt, max_tokens=max_tokens)
+        return response.choices[0].text.strip(), len(response.choices[0].text.strip())
 
     def query_huggingface(self, prompt, max_tokens):
         # Placeholder for Hugging Face API call
