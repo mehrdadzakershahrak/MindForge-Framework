@@ -5,8 +5,9 @@ class FrameworkCore:
     def add_component(self, component_name, component):
         self.components[component_name] = component
 
-    def run_component(self, component_name, input_data):
-        return self.components[component_name].process(input_data)
+    def run_component(self, component_name, *args, **kwargs):
+        component = self.components[component_name]
+        return component(*args, **kwargs)
 
 class ComponentInterface:
     def process(self, input_data):
