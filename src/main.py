@@ -2,7 +2,8 @@ from FrameworkCore import FrameworkCore
 from TaskPipeline import TaskPipeline
 from ResourceManager import ResourceManager
 from LanguageModelService import LanguageModelService
-from self_talk import self_talk, think_out_loud, create_task
+from utils import self_talk, think_out_loud, create_task
+from Task import Task
 from components import analysis, drafting, research
 
 def read_instructions(file_path):

@@ -1,3 +1,5 @@
+from Task import Task
+
 def self_talk(component1, component2, initial_input, lm_service, joint_response=True, threshold=0.5):
     response1 = component1(initial_input, lm_service)
     response2 = component2(initial_input, lm_service)
