@@ -10,7 +10,3 @@ class Task:
             component_instructions = self.instructions.get(component_name, {})
             result = framework.run_function(component_name, *result, **component_instructions)
         return result
-    
-    # Dynamic task composition
-    def create_task(name, component_sequence, instructions):
-        return Task(name, component_sequence, instructions)

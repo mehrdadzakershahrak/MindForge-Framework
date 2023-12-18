@@ -31,3 +31,7 @@ def think_out_loud(initial_response, refinement_func, iterations, *args):
     for _ in range(iterations):
         refined_response = refinement_func(refined_response, *args)
     return refined_response
+
+# Dynamic task composition
+def create_task(name, component_sequence, instructions):
+    return Task(name, component_sequence, instructions)
