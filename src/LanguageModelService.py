@@ -2,8 +2,6 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 
-client = OpenAI(api_key=self.openai_api_key)
-
 # Load environment variables
 load_dotenv()
 
@@ -11,6 +9,7 @@ class LanguageModelService:
     def __init__(self, provider='openai'):
         self.provider = provider
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
+        client = OpenAI()
 
     def query_language_model(self, prompt, max_tokens=1000):
         if self.provider == 'openai':
@@ -22,11 +21,13 @@ class LanguageModelService:
         return response
 
     def query_openai(self, prompt, max_tokens):
-        model = 'gpt-4-turbo'
+        client = OpenAI()
+
+        model = "gpt-3.5-turbo"
         response = client.chat.completions.create(model=model,
         messages=[{"role": "user", "content": prompt}],  # prompt passed as user message
         max_tokens=max_tokens,
-        temperature=0)  # adjust as needed)
+        temperature=0.75)  # adjust as needed)
         # Extracting the response text from the last message from the assistant
         if response.choices:
             last_message = response.choices[-1].get('message', {})
