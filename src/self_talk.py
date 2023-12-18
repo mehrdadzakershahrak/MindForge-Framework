@@ -5,10 +5,10 @@ def self_talk(component1, component2, initial_input, lm_service, joint_response=
     if calculate_semantic_difference(response1, response2) > threshold:
         questions = [
             "Why did you do that?",
-            "Why you didn't do what I have done?",
-            "Why is what you propose to do is more efficient/safe/cheap than something I would have done?",
+            "Why you didn't do what that have done?",
+            "Why is what you propose to do is more efficient/safe/cheap than something that would have done?",
             "Why can't you do that?",
-            "Why do I not need to replan at this point?"
+            "Why do I not need to do that at this point?"
         ]
         for question in questions:
             modified_question1 = question.replace("that", response2)

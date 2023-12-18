@@ -1,6 +1,5 @@
-def research(user_query, notes, queries, mission, output_format, refine_queries, lm_service):
-    prompt = f"# Mission\n{mission}\n\n# User Query\n{user_query}\n\n# Notes\n{notes}\n\n# Previous Queries\n{queries}"
+def research(user_query, notes, queries, lm_service, instructions):
+    prompt = "\n\n".join([f"{key} {value}" for key, value in instructions.items()])
+    prompt += f"\n\nUser Query: {user_query}\nNotes: {notes}\nPrevious Queries: {queries}"
     response, tokens = lm_service.query_language_model(prompt)
-    return queries, notes + "\n" + response, tokens
-
-# Similar modifications can be made to other components.
+    return response, tokens

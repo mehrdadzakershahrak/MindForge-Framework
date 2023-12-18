@@ -10,43 +10,37 @@ def main():
     framework = FrameworkCore()
     lm_service = LanguageModelService(provider='openai')
 
-    # Define and add functions to the framework
+    # Add functions to the framework
     framework.add_function('research', research)
-    # Add other components as needed...
-    framework.add_function('self_talk', self_talk)
-    framework.add_function('think_out_loud', think_out_loud)
+    framework.add_function('analysis', analysis)
+    framework.add_function('drafting', drafting),
     
     # Define instructions for each component
     research_instructions = {
-        'mission': "Generate search queries based on user input.",
-        'output_format': "JSON",
-        'refine_queries': "Refine and optimize queries."
+        '# MISSION': "You are a search query generator. You will be given a specific query or problem by the USER and you are to generate a JSON list of at most 5 questions that will be used to search the internet. Make sure you generate comprehensive and counterfactual search queries. Employ everything you know about information foraging and information literacy to generate the best possible questions.",
+        '# REFINE QUERIES:' : "You might be given a first-pass information need, in which case you will do the best you can to generate ``naive queries`` (uninformed search queries). However the USER might also give you previous search queries or other background information such as accumulated notes. If these materials are present, you are to generate ``informed queries`` - more specific search queries that aim to zero in on the correct information domain. Do not duplicate previously asked questions. Use the notes and other information presented to create targeted queries and/or to cast a wider net.",
+        '# OUTPUT FORMAT:' : "In all cases, your output must be a simple JSON list of strings. "
     }
-    # Define instructions for other components...
-
+     
+    
     # Create tasks with instructions
     research_task = create_task("Research Task", ['research'], {'research': research_instructions})
+    analysis_task = create_task("Analysis Task", ['analysis'], {'analysis': analysis_instructions})
+    drafting_task = create_task("Drafting Task", ['drafting'], {'drafting': drafting_instructions})
     # Create other tasks...
 
-    # Create a pipeline of tasks
-    resource_manager = ResourceManager(max_concurrent_tasks=3)
-    pipeline = TaskPipeline([research_task], resource_manager)  # Add other tasks as needed
+    # Example usage
+    researched_questions = ['What is AI?', 'Latest AI technologies']
+    cached_data = {}  # Initialize an empty cache
 
-    # Execute tasks sequentially
-    sequential_result = pipeline.execute_sequentially(framework, ('initial input', 'lm_service'))
+    # Perform analysis
+    notes, new_cache = framework.run_function('analysis', researched_questions, cached_data, lm_service, analysis_instructions)
 
-    # Execute tasks in parallel with resource management
-    parallel_results = pipeline.execute_in_parallel(framework, [('input1', 'lm_service'), ('input2', 'lm_service')])
+    # Drafting process
+    user_needs = "Need an overview of AI technologies"
+    draft, iteration = framework.run_function('drafting', notes, user_needs, lm_service, drafting_instructions)
 
-    print(f"Sequential Execution Result: {sequential_result}")
-    print(f"Parallel Execution Results with Resource Management: {parallel_results}")
-    
-    # Example usage of thinking out loud
-    initial_response = "Initial prompt"
-    refined_response = think_out_loud(initial_response, self_talk, 3, component1, component2, lm_service, True)
-
-    print(f"Refined Response: {refined_response}")
-
+    print(f"Draft (Iteration {iteration}): {draft}")
 
 if __name__ == "__main__":
     main()
