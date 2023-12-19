@@ -21,8 +21,8 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
 ## Installing Dependencies
 Install the required Python packages:
-```pip install -r requirements.txt
-```
+
+```pip install -r requirements.txt```
 
 ## Environment Variables
 Set up necessary environment variables, such as API keys:

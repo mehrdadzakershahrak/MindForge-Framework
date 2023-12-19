@@ -22,7 +22,7 @@ To get started with MindForge, you'll need to clone the repository and follow th
 git clone https://github.com/mehrdadzakershahrak/MindForge.git
 ```
 
-For detailed installation instructions, see [INSTALL.md](docs/INSTALL.md).
+For detailed installation instructions, see [INSTALL.md](INSTALL.md).
 
 ## Features and Capabilities
 MindForge offers:
