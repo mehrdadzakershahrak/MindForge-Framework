@@ -32,7 +32,8 @@ Set up necessary environment variables, such as API keys:
 
 ## Running MindForge
 After installation, run MindForge using:
-```bash cd src
+```bash 
+cd src
 python main.py
 ```
 
