@@ -1,0 +1,7 @@
+openai==1.5.0
+numpy
+pandas
+Flask==2.3.3
+requests
+python-dotenv==1.0.0
+halo==0.0.31
