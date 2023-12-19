@@ -46,7 +46,7 @@ def main():
     
     # Define the number of iterations for research and analysis
     n_iterations = 3 # Example value
-    user_input = input("Please enter the initial input: ")
+    user_input = input("What would you like to discuss? ")
     spinner = Halo(text='Thinking...', spinner='dots')
     spinner.start()
     
