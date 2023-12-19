@@ -46,12 +46,13 @@ def main():
     
     # Define the number of iterations for research and analysis
     n_iterations = 3 # Example value
+    user_input = input("Please enter the initial input: ")
     spinner = Halo(text='Thinking...', spinner='dots')
     spinner.start()
     
     # Sequential execution of tasks with iteration
     for _ in range(n_iterations):
-        research_output = research_task.execute(framework, ('initial input', '', '', lm_service))
+        research_output = research_task.execute(framework, (user_input, '', '', lm_service))
         print(f"Research Task Output: {research_output}")
 
         analysis_output = analysis_task.execute(framework, (research_output, '', lm_service))

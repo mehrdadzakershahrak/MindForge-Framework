@@ -23,7 +23,7 @@ class LanguageModelService:
     def query_openai(self, prompt, max_tokens):
         client = OpenAI()
 
-        model = "gpt-3.5-turbo"
+        model = "gpt-4"
         response = client.chat.completions.create(model=model,
         messages=[{"role": "user", "content": prompt}],  # prompt passed as user message
         max_tokens=max_tokens,
