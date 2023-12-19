@@ -1,4 +1,5 @@
 from Task import Task
+from sentence_transformers import SentenceTransformer, util
 
 def self_talk(component1, component2, initial_input, lm_service, joint_response=True, threshold=0.5):
     response1 = component1(initial_input, lm_service)
@@ -22,11 +23,26 @@ def self_talk(component1, component2, initial_input, lm_service, joint_response=
     if joint_response:
         return f"{response1} | {response2}"
     else:
-        return response1, response2
+        return (response1, response2)
 
-def calculate_semantic_difference(response1, response2):
-    # Placeholder for actual semantic analysis
-    return 0.6  # Example value
+# Function to calculate cosine similarity
+def cosine_similarity(embedding1, embedding2):
+    return util.pytorch_cos_sim(embedding1, embedding2).item()
+
+# Add more similarity functions as needed
+
+def calculate_semantic_difference(response1, response2, similarity_func=cosine_similarity):
+    model = SentenceTransformer('all-MiniLM-L12-v2')  # A pre-trained model
+
+    # Encode the responses to get their embeddings
+    embedding1 = model.encode(response1, convert_to_tensor=True)
+    embedding2 = model.encode(response2, convert_to_tensor=True)
+
+    # Calculate similarity based on the specified function
+    similarity_score = similarity_func(embedding1, embedding2)
+
+    # Return the difference (1 - similarity for 'difference')
+    return 1 - similarity_score
 
 def think_out_loud(initial_response, refinement_func, iterations, *args):
     refined_response = initial_response

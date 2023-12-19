@@ -31,3 +31,9 @@ class TaskPipeline:
             thread.join()
 
         return results
+    
+    def execute_pipeline(self, initial_input):
+        current_input = initial_input
+        for task in self.tasks:
+            current_input = task.execute(self, current_input)
+        return current_input

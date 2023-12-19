@@ -5,3 +5,5 @@ Flask==2.3.3
 requests
 python-dotenv==1.0.0
 halo==0.0.31
+sentence-transformers==2.2.2
+torch
