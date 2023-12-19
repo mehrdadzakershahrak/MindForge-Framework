@@ -32,7 +32,9 @@ Set up necessary environment variables, such as API keys:
 
 ## Running MindForge
 After installation, run MindForge using:
-```python src/main.py```
+```bash cd src
+python main.py
+```
 
 This `INSTALL.md` provides a basic structure for setting up MindForge. Modify as necessary to match the specific requirements and structure of your project.
 
