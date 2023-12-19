@@ -8,7 +8,6 @@ from components.research import research
 from components.analysis import analysis
 from components.drafting import drafting
 from halo import Halo
-import os
 
 def read_instructions(file_path):
     instructions = {}
