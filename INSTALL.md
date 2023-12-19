@@ -27,8 +27,8 @@ Install the required Python packages:
 ## Environment Variables
 Set up necessary environment variables, such as API keys:
 
--Rename .env.example to .env.
--Edit .env to include your specific keys and settings
+- Rename .env.example to .env.
+- Edit src/.env to include your specific keys and settings if you are planning on using openAI API.
 
 ## Running MindForge
 After installation, run MindForge using:
