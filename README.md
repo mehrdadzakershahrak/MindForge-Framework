@@ -19,7 +19,7 @@ MindForge is designed to be a multi-layered, autonomous cognitive entity that op
 To get started with MindForge, you'll need to clone the repository and follow the installation instructions provided.
 
 ```bash
-git clone https://github.com/your-username/MindForge.git
+git clone https://github.com/mehrdadzakershahrak/MindForge.git
 ```
 
 For detailed installation instructions, see [INSTALL.md](docs/INSTALL.md).
