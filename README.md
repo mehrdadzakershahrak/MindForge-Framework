@@ -24,6 +24,13 @@ git clone https://github.com/mehrdadzakershahrak/MindForge.git
 
 For detailed installation instructions, see [INSTALL.md](docs/INSTALL.md).
 
+## Features and Capabilities
+MindForge offers:
+- Multi-layered cognitive processing
+- Privacy-focused local operations
+- Integration with leading AI models
+For more details, see our [features documentation](docs/FEATURES.md).
+
 ## Usage
 For guidelines on how to use MindForge and examples of its capabilities, please refer to the [USAGE.md](docs/USAGE.md)  documentation.
 
