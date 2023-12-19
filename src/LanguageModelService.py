@@ -30,8 +30,9 @@ class LanguageModelService:
         temperature=0.75)  # adjust as needed)
         # Extracting the response text from the last message from the assistant
         if response.choices:
-            last_message = response.choices[-1].get('message', {})
-            return last_message.get('content', ''), len(last_message.get('content', ''))
+            last_message = response.choices[-1].message
+            last_message_content = last_message.content if last_message else ''
+            return last_message_content, len(last_message_content)
         return '', 0
 
 
