@@ -1,6 +1,9 @@
+from LanguageModelService import LanguageModelService
+
 class FrameworkCore:
     def __init__(self):
         self.components = {}
+        self.lm_service = LanguageModelService(provider='openai')
 
     def add_component(self, component_name, component):
         self.components[component_name] = component

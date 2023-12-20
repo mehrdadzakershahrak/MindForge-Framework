@@ -20,47 +20,38 @@ def read_instructions(file_path):
                     instructions[formatted_key] = value.strip()
     return instructions
 
-
 def main():
     framework = FrameworkCore()
     lm_service = LanguageModelService(provider='openai')
 
-    # Add functions to the framework
+    # Add components to the framework
     framework.add_component('research', research)
     framework.add_component('analysis', analysis)
     framework.add_component('drafting', drafting)
-    # Add other components...
 
-    # Read instructions for each component from files
+    # Read instructions
     research_instructions = read_instructions('instructions/research.txt')
     analysis_instructions = read_instructions('instructions/analysis.txt')
     drafting_instructions = read_instructions('instructions/draft.txt')
 
-    # Create tasks with instructions
-    research_task = create_task("Research Task", ['research'], {'research': research_instructions}, task_type='standard')
-    analysis_task = create_task("Analysis Task", ['analysis'], {'analysis': analysis_instructions}, task_type='standard')
-    drafting_task = create_task("Drafting Task", ['drafting'], {'drafting': drafting_instructions}, task_type='standard')
-    # Create other tasks...
+    # Create standard tasks
+    research_task = create_task("Research Task", ['research'], {'research': research_instructions})
+    analysis_task = create_task("Analysis Task", ['analysis'], {'analysis': analysis_instructions})
+    drafting_task = create_task("Drafting Task", ['drafting'], {'drafting': drafting_instructions})
 
-    # Task execution and other logic
-    
-    # Define the number of iterations for research and analysis
-    n_iterations = 3 # Example value
     user_input = input("What would you like to discuss? ")
     spinner = Halo(text='Thinking...', spinner='dots')
     spinner.start()
-    
-    # Sequential execution of tasks with iteration
-    for _ in range(n_iterations):
-        research_output = research_task.execute(framework, (user_input, '', '', lm_service))
-        print(f"Research Task Output: {research_output}")
 
-        analysis_output = analysis_task.execute(framework, (research_output, '', lm_service))
-        print(f"Analysis Task Output: {analysis_output}")
+    # Execute TOL and ST
+    tol_output = think_out_loud(user_input, lambda data: research_task.execute(framework, (data, '', '', lm_service)), 3)
+    print("TOL Output:", tol_output)
 
-    draft_output = drafting_task.execute(framework, (analysis_output, '', lm_service))
-    print(f"Drafting Task Output: {draft_output}")
-    
+    st_output = self_talk(lambda data, lm: analysis_task.execute(framework, (data, '', lm)), 
+                          lambda data, lm: drafting_task.execute(framework, (data, '', lm)), 
+                          tol_output, lm_service)
+    print("ST Output:", st_output)
+
     spinner.stop()
 
 if __name__ == "__main__":

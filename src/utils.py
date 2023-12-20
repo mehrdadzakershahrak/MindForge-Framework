@@ -34,6 +34,10 @@ def cosine_similarity(embedding1, embedding2):
 def calculate_semantic_difference(response1, response2, similarity_func=cosine_similarity):
     model = SentenceTransformer('all-MiniLM-L12-v2')  # A pre-trained model
 
+    # Convert responses to strings if they are not already
+    response1 = str(response1) if not isinstance(response1, str) else response1
+    response2 = str(response2) if not isinstance(response2, str) else response2
+
     # Encode the responses to get their embeddings
     embedding1 = model.encode(response1, convert_to_tensor=True)
     embedding2 = model.encode(response2, convert_to_tensor=True)
@@ -51,5 +55,5 @@ def think_out_loud(initial_response, refinement_func, iterations, *args):
     return refined_response
 
 # Dynamic task composition
-def create_task(name, component_sequence, instructions):
-    return Task(name, component_sequence, instructions)
+def create_task(name, component_sequence, instructions, task_type='standard'):
+    return Task(name, component_sequence, instructions, task_type)
