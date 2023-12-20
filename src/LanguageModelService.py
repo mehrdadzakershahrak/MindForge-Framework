@@ -32,8 +32,8 @@ class LanguageModelService:
         if response.choices:
             last_message = response.choices[-1].message
             last_message_content = last_message.content if last_message else ''
-            return last_message_content, len(last_message_content)
-        return '', 0
+            return last_message_content
+        return ''
 
 
     def query_huggingface(self, prompt, max_tokens):

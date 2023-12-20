@@ -44,14 +44,15 @@ def main():
     spinner.start()
 
     # Execute TOL and ST
-    tol_output = think_out_loud(user_input, lambda data: research_task.execute(framework, (data, '', '', lm_service)), 3)
+    tol_output = think_out_loud(user_input, lambda data: analysis_task.execute(framework, (data, '', '', lm_service, analysis_instructions)), 2)
     print("TOL Output:", tol_output)
 
-    st_output = self_talk(lambda data, lm: analysis_task.execute(framework, (data, '', lm)), 
-                          lambda data, lm: drafting_task.execute(framework, (data, '', lm)), 
+    st_output = self_talk(lambda data, lm: research_task.execute(framework, (data, '', '', lm, research_instructions)), 
+                          lambda data, lm: drafting_task.execute(framework, (data, '', lm, drafting_instructions)), 
                           tol_output, lm_service)
     print("ST Output:", st_output)
     spinner.stop()
+    
 
 if __name__ == "__main__":
     main()
