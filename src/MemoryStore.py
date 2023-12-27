@@ -1,3 +1,5 @@
+from utils import self_talk_with_feedback, think_out_loud_with_feedback
+
 class MemoryStore:
     def __init__(self):
         self.data = []

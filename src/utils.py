@@ -60,3 +60,17 @@ def think_out_loud(initial_response, refinement_func, iterations, *args):
 # Dynamic task composition
 def create_task(name, component_sequence, instructions, task_type='standard'):
     return Task(name, component_sequence, instructions, task_type)
+
+def self_talk_with_feedback(component1, component2, initial_input, lm_service, memory_store, joint_response=True, threshold=0.5):
+    response1 = component1(initial_input, lm_service)
+    memory_store.capture_human_feedback(response1)
+    response2 = component2(initial_input, lm_service)
+    memory_store.capture_human_feedback(response2)
+    # ... rest of the function
+
+def think_out_loud_with_feedback(initial_response, refinement_func, iterations, memory_store, *args):
+    refined_response = initial_response
+    for _ in range(iterations):
+        refined_response = refinement_func(refined_response, *args)
+        memory_store.capture_human_feedback(refined_response)
+    return refined_response
