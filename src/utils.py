@@ -61,16 +61,28 @@ def think_out_loud(initial_response, refinement_func, iterations, *args):
 def create_task(name, component_sequence, instructions, task_type='standard'):
     return Task(name, component_sequence, instructions, task_type)
 
-def self_talk_with_feedback(component1, component2, initial_input, lm_service, memory_store, joint_response=True, threshold=0.5):
+def self_talk_with_feedback(component1, component2, initial_input, lm_service, feedback, memory_store):
     response1 = component1(initial_input, lm_service)
-    memory_store.capture_human_feedback(response1)
-    response2 = component2(initial_input, lm_service)
-    memory_store.capture_human_feedback(response2)
-    # ... rest of the function
+    response1_embedding = generate_embedding(response1)
+    high_quality, noise = memory_store.process_feedback(response1, feedback)
+    refined_embedding = memory_store.refine_embedding(response1_embedding, high_quality, noise)
+    refined_response1 = memory_store.generate_response_from_embedding(refined_embedding)
+    
+    response2 = component1(initial_input, lm_service)
+    response2_embedding = generate_embedding(response1)
+    high_quality, noise = memory_store.process_feedback(response2, feedback)
+    refined_embedding = memory_store.refine_embedding(response2_embedding, high_quality, noise)
+    refined_response2 = memory_store.generate_response_from_embedding(refined_embedding)
+
+    memory_store.add_interaction(initial_input, response1, feedback, similarity_between_feedback_and_response1)
+    return refined_response1, refined_response2
 
 def think_out_loud_with_feedback(initial_response, refinement_func, iterations, memory_store, *args):
     refined_response = initial_response
     for _ in range(iterations):
         refined_response = refinement_func(refined_response, *args)
-        memory_store.capture_human_feedback(refined_response)
+        feedback = memory_store.capture_human_feedback(refined_response)
+        high_quality, noise = memory_store.process_feedback(refined_response, feedback)
+        refined_embedding = memory_store.refine_embedding(refined_response, high_quality, noise)
+        refined_response = memory_store.generate_response_from_embedding(refined_embedding)
     return refined_response
