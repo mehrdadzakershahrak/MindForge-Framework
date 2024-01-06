@@ -9,8 +9,6 @@ def analysis(user_query, lm_service, instructions, notes="", queries=""):
             prompt = "\n\n".join([f"{key} {value}" for key, value in instructions.items()])
             prompt += f"\n\nAnalyze Question: {question}"
             response = lm_service.query_language_model(prompt)
-            print(f"Prompt for analysis: {prompt}")  # Debugging print
-            print(f"Response from language model: {response}")  # Debugging print
             cached_data[question] = response
             notes += f"Question: {question}\nAnswer: {response}\n\n"
     return notes

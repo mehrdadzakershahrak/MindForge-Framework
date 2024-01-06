@@ -1,11 +1,15 @@
 def drafting(user_query, lm_service, instructions, notes="", queries=""):
-    # If 'searched_notes' and 'user_needs' are derived from 'notes' and 'user_query', adjust accordingly
-    searched_notes = notes  # or some processing based on 'notes'
-    user_needs = user_query  # or some processing based on 'user_query'
-    iteration = 1  # If iteration is needed, determine how to incorporate it
+    # Constructing the prompt from the instructions
+    prompt_parts = [f"{key} {value}" for key, value in instructions.items()]
+    prompt_parts.append(f"User Needs: {user_query}")
+    
+    # Include 'Searched Notes' in the prompt only if 'notes' is not empty
+    if notes.strip():  # Checks if 'notes' is not just empty or whitespace
+        prompt_parts.append(f"Searched Notes: {notes}")
 
-    prompt = "\n\n".join([f"{key} {value}" for key, value in instructions.items()])
-    prompt += f"\n\nUser Needs: {user_query}\nSearched Notes: {notes}\nIteration: 1"  # Adjust as needed
+    # Combine all parts into the final prompt
+    prompt = "\n\n".join(prompt_parts)
 
+    # Querying the language model with the constructed prompt
     full_response = lm_service.query_language_model(prompt)
     return full_response

@@ -1,19 +1,18 @@
 import streamlit as st
-from loop_2 import main  
-# Streamlit app title
+from web_decision_making import main
+
 st.title('MindForge Framework Interface')
 
-# User input
-user_query = st.text_input("Enter your query:")
+user_query = st.text_input("What would you like to discuss? ")
 
-# Button to trigger processing
 if st.button('Process Query'):
-    if user_query:  # Only process if user has entered a query
+    if user_query:
         with st.spinner('Processing...'):
-            # Call the main function with the user query and capture the output
-            output = main(user_query)
+            outputs = main(user_query)
 
-            # Display the output
-            st.write(output)
+            # Display each step's output
+            for step, output in outputs:
+                st.subheader(f"Output from {step.capitalize()}:")
+                st.write(output)
     else:
         st.warning('Please enter a query to process.')
