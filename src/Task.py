@@ -5,17 +5,13 @@ class Task:
         self.instructions = instructions
         self.task_type = task_type
 
-    def execute(self, framework, initial_input):
-        result = initial_input
+    def execute(self, framework, initial_input, lm_service=None):
+        result, notes, queries, _ = initial_input  # Ignore the fourth element as it's a placeholder
         for component_name in self.components:
-            component = framework.components[component_name]
+            component_func = framework.components[component_name]
             component_instructions = self.instructions.get(component_name, {})
 
-            # Check if the component is 'research' and handle accordingly
-            if component_name == 'research':
-                if isinstance(result, tuple):
-                    result = component(*result[:4], component_instructions)
-                else:
-                    result = component(result, "", "", lm_service, component_instructions)
+            # Call the component function with appropriate arguments
+            result = component_func(result, notes, queries, lm_service, component_instructions)
 
         return result
